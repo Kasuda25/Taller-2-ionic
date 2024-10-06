@@ -4,10 +4,15 @@ import { IonicModule } from '@ionic/angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputComponent } from './components/input/input.component';
 import { ButtonComponent } from './components/button/button.component';
+import { AvatarComponent } from './components/avatar/avatar.component';
+import { StorageService } from './services/storage/storage.service';
+import { AuthService } from './services/auth/auth.service';
+import { LoadingService } from './controllers/loading/loading.service';
 
 const COMPONENTS = [
   InputComponent,
-  ButtonComponent
+  ButtonComponent,
+  AvatarComponent,
 ];
 
 const MODULES = [
@@ -17,11 +22,21 @@ const MODULES = [
   ReactiveFormsModule
 ];
 
+const PROVIDERS = [
+  StorageService,
+  AuthService,
+];
+
+const CONTROLLERS = [
+  LoadingService,
+];
+
 @NgModule({
   declarations: [ ... COMPONENTS],
   imports: [
     ...MODULES,
   ],
+  providers:[ ... PROVIDERS, ...CONTROLLERS],
   exports:[ ... COMPONENTS, ...MODULES]
 })
 export class SharedModule { }
