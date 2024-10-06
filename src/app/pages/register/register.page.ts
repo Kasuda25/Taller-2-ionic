@@ -15,15 +15,17 @@ export class RegisterPage implements OnInit {
   public lastName!: FormControl;
   public email!: FormControl;
   public password!: FormControl;
+  public age!: FormControl;
+  public phone!: FormControl;
   public registerForm!: FormGroup;
+  
   constructor(private readonly authSrv: AuthService, private readonly loadingSrv: LoadingService,
-    private readonly nvctrl:NavController
+    private readonly nvctrl: NavController
   ) {
     this.initForm();
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   public async doRegister() {
     try {
@@ -46,13 +48,18 @@ export class RegisterPage implements OnInit {
     this.lastName = new FormControl([Validators.required]);
     this.email = new FormControl([Validators.required, Validators.email]);
     this.password = new FormControl([Validators.required]);
+    this.age = new FormControl([Validators.required, Validators.min(18)]);
+    this.phone = new FormControl([Validators.required, Validators.pattern('^[0-9]{10}$')]);
+
     this.registerForm = new FormGroup({
       image: this.image,
       name: this.name,
       lastName: this.lastName,
       email: this.email,
-      password: this.password
+      password: this.password,
+      age: this.age,
+      phone: this.phone
     });
   }
-
 }
+
