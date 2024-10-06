@@ -8,6 +8,7 @@ import { AvatarComponent } from './components/avatar/avatar.component';
 import { StorageService } from './services/storage/storage.service';
 import { AuthService } from './services/auth/auth.service';
 import { LoadingService } from './controllers/loading/loading.service';
+import { ToastService } from './controllers/toastService/toast.service';
 
 const COMPONENTS = [
   InputComponent,
@@ -29,6 +30,7 @@ const PROVIDERS = [
 
 const CONTROLLERS = [
   LoadingService,
+  ToastService
 ];
 
 @NgModule({

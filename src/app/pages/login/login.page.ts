@@ -41,7 +41,6 @@ export class LoginPage implements OnInit {
 
 
     }
-
   }
 
   private initForm() {
