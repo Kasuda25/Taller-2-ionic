@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { NavController } from '@ionic/angular';
 import { LoadingService } from 'src/app/shared/controllers/loading/loading.service';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 
@@ -15,7 +16,9 @@ export class RegisterPage implements OnInit {
   public email!: FormControl;
   public password!: FormControl;
   public registerForm!: FormGroup;
-  constructor(private readonly authSrv: AuthService, private readonly loadingSrv: LoadingService) {
+  constructor(private readonly authSrv: AuthService, private readonly loadingSrv: LoadingService,
+    private readonly nvctrl:NavController
+  ) {
     this.initForm();
   }
 
@@ -30,6 +33,7 @@ export class RegisterPage implements OnInit {
       const response = await this.authSrv.register(email, password);
       console.log(response);
       await this.loadingSrv.dismiss();
+      this.nvctrl.navigateForward("");
     } catch (error) {
       await this.loadingSrv.dismiss();
       console.error(error);
