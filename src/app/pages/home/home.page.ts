@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NavController } from '@ionic/angular';
 import { LoadingService } from 'src/app/services/loading.service';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 
@@ -10,11 +11,14 @@ import { AuthService } from 'src/app/shared/services/auth/auth.service';
 export class HomePage {
 
 
-  constructor(private readonly authSrv: AuthService, private readonly loadingSrv: LoadingService) { }
+  constructor(private readonly authSrv: AuthService, private readonly loadingSrv: LoadingService, 
+    private readonly navCtrl: NavController
+  ) { }
 
   public async logOut(){
     await this.loadingSrv.present();
     await this.authSrv.logOut();
     await this.loadingSrv.dismiss();
+    this.navCtrl.navigateForward("");
   }
 }
