@@ -9,6 +9,7 @@ import { StorageService } from './services/storage/storage.service';
 import { AuthService } from './services/auth/auth.service';
 import { LoadingService } from './controllers/loading/loading.service';
 import { ToastService } from './controllers/toastService/toast.service';
+import { DatabaseService } from './services/database/database.service';
 
 const COMPONENTS = [
   InputComponent,
@@ -26,6 +27,7 @@ const MODULES = [
 const PROVIDERS = [
   StorageService,
   AuthService,
+  DatabaseService,
 ];
 
 const CONTROLLERS = [

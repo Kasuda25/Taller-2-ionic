@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NavController } from '@ionic/angular';
 import { LoadingService } from 'src/app/shared/controllers/loading/loading.service';
+import { ToastService } from 'src/app/shared/controllers/toastService/toast.service';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
+import { DatabaseService } from 'src/app/shared/services/database/database.service';
 
 @Component({
   selector: 'app-register',
@@ -19,9 +21,8 @@ export class RegisterPage implements OnInit {
   public phone!: FormControl;
   public registerForm!: FormGroup;
   
-  constructor(private readonly authSrv: AuthService, private readonly loadingSrv: LoadingService,
-    private readonly nvctrl: NavController
-  ) {
+  constructor(private readonly authSrv: AuthService, private readonly dbSrv: DatabaseService, private readonly loadingSrv: LoadingService,
+    private readonly nvctrl: NavController, private readonly toastSrv: ToastService) {
     this.initForm();
   }
 
@@ -30,14 +31,21 @@ export class RegisterPage implements OnInit {
   public async doRegister() {
     try {
       await this.loadingSrv.show();
-      console.log(this.registerForm.value);
-      const { email, password } = this.registerForm.value;
-      const response = await this.authSrv.register(email, password);
-      console.log(response);
+      const { email, password, name, lastName, age, phone, image } = this.registerForm.value;
+      const uid = await this.authSrv.register(email, password);
+      const userData = {
+        name: name,
+        lastName: lastName,
+        age: age,
+        phone: phone,
+        image: image,
+      };
+      await this.dbSrv.addUser(uid, userData);
       await this.loadingSrv.dismiss();
       this.nvctrl.navigateForward("");
     } catch (error) {
       await this.loadingSrv.dismiss();
+      await this.toastSrv.presentToast("Error al registrar usuario", "danger", "close");
       console.error(error);
     }
   }

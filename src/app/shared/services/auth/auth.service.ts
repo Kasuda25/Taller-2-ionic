@@ -8,37 +8,43 @@ export class AuthService {
 
   constructor(private readonly fbAuth: AngularFireAuth) { }
 
-  public register(email: string, password: string) {
+  public async register(email: string, password: string): Promise<any> {
+    try {
+      const res = await this.fbAuth.createUserWithEmailAndPassword(email, password);
+      if (res.user) {
+        return res.user.uid;
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  public login(email: string, password: string) {
     return new Promise((resolve, reject) => {
-      this.fbAuth.createUserWithEmailAndPassword(email, password)
+      this.fbAuth.signInWithEmailAndPassword(email, password).then((res) => resolve(res))
+        .catch((err) => reject(err));
+    });
+  }
+
+  public logOut() {
+    return new Promise((resolve, reject) => {
+      this.fbAuth.signOut()
         .then((res) => resolve(res))
         .catch((err) => reject(err));
     });
   }
-  public login(email: string, password: string){
-    return new Promise ((resolve, reject) => {
-      this.fbAuth.signInWithEmailAndPassword(email,password).then((res)=> resolve(res))
-      .catch((err)=> reject(err));
-    });
-  }
 
-  public logOut(){
-    return new Promise((resolve, reject) =>{
-      this.fbAuth.signOut()
-      .then((res)=> resolve(res))
-      .catch((err)=> reject(err));
-    });
-  }
-
-  public isAuth(){
+  public isAuth() {
     return new Promise((resolve, reject) => {
       this.fbAuth.onAuthStateChanged(user => {
-        if(user){
-           resolve(true);
-        } else{
+        if (user) {
+          resolve(true);
+        } else {
           resolve(false);
         }
       });
     });
   }
+
+  
 }

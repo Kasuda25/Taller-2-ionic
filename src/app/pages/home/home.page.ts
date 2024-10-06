@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import { LoadingService } from 'src/app/services/loading.service';
+import { LoadingService } from 'src/app/shared/controllers/loading/loading.service';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 
 @Component({
@@ -16,7 +16,7 @@ export class HomePage {
   ) { }
 
   public async logOut(){
-    await this.loadingSrv.present();
+    await this.loadingSrv.show();
     await this.authSrv.logOut();
     await this.loadingSrv.dismiss();
     this.navCtrl.navigateForward("");

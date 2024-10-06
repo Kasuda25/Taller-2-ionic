@@ -27,7 +27,6 @@ export class LoginPage implements OnInit {
 
   public async doLogin() {
     try{
-      console.log(this.loginForm.value);
       await this.loadsrv.show();
       const {email, password } = this.loginForm.value;
       await this.authServ.login(email, password);
