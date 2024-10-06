@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 type ColorButton = "primary" | "secondary" | "tertiary" | "success" | "warning" | "danger" | "light" | "medium" | "dark";
 type ButtonType = "button" | "submit" | "reset";
@@ -14,8 +14,15 @@ export class ButtonComponent  implements OnInit {
   @Input() color: ColorButton = "success";
   @Input() disable = false;
 
+  @Output() doClick = new EventEmitter<boolean>();
+
   constructor() { }
 
   ngOnInit() {}
+
+  click(){
+    this.doClick.emit(true);
+  }
+
 
 }
