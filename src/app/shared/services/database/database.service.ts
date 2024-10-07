@@ -44,7 +44,7 @@ export class DatabaseService {
   public async createTask(task: any): Promise<void> {
     const isAuth = await this.authsrv.isAuth();
     if (isAuth) {
-      const id = this.fireStore.createId(); // Generar un ID único
+      const id = this.fireStore.createId();
       return this.fireStore
         .collection(this.TasksTable)
         .doc(id)
@@ -74,7 +74,7 @@ export class DatabaseService {
     return this.fireStore
       .collection<Task>(this.TasksTable)
       .doc(taskId)
-      .valueChanges();  // Esto retornará un observable de los datos del documento
+      .valueChanges();
   }
   
 
