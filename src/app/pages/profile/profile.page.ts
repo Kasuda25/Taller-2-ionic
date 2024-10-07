@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { LoadingService } from 'src/app/shared/controllers/loading/loading.service';
+import { ToastService } from 'src/app/shared/controllers/toastService/toast.service';
 
 @Component({
   selector: 'app-profile',
@@ -11,7 +12,7 @@ import { LoadingService } from 'src/app/shared/controllers/loading/loading.servi
 export class ProfilePage implements OnInit {
   public id: string = "";
 
-  constructor(private readonly authSrv: AuthService, private readonly loadingSrv: LoadingService, private readonly navCtrl: NavController) { }
+  constructor(private readonly authSrv: AuthService, private readonly loadingSrv: LoadingService, private readonly navCtrl: NavController, private readonly toastSrv: ToastService) { }
 
   async ngOnInit() {
     this.id = await this.authSrv.getCurrentUid();
@@ -22,6 +23,7 @@ export class ProfilePage implements OnInit {
     await this.authSrv.logOut();
     await this.loadingSrv.dismiss();
     this.navCtrl.navigateForward("");
+    await this.toastSrv.presentToast("Se ha cerrado sesion", "success", "checkmark");
   }
 
   public async update() {
