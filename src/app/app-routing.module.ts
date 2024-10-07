@@ -27,13 +27,15 @@ const routes: Routes = [
     canActivate: [authGuard]
   },
   {
+    path: 'task-detail/:id',
+    loadChildren: () => import('./pages/task-detail/task-detail.module').then( m => m.TaskDetailPageModule),
+    canActivate: [authGuard]
+  },
+  {
     path: '',
     redirectTo: 'login',
     pathMatch: 'full'
   },
-
-  
-
 
 ];
 

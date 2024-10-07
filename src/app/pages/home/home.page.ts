@@ -33,4 +33,8 @@ export class HomePage implements OnInit {
     this.userTasks$ = this.dbSrv.getuserTasks(userId);
     await this.loadingsrv.dismiss();
   }
+
+  public viewTask(id: string = '') {
+    this.navCtrl.navigateForward(`task-detail/${id}`);
+  }
 }
