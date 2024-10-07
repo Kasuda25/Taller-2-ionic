@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Add Task</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <form [formGroup]="taskForm" (ngSubmit)="doCreate">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <app-input [control]="title" type="text" label="Title"></app-input>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <app-input [control]="description" type="text" label="Description"></app-input>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <app-button [disable]="taskForm.invalid" type="submit" value="Add"></app-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </form>
+    </ion-card-content>
+  </ion-card>
+  
+</ion-content>
