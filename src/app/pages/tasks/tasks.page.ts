@@ -6,6 +6,7 @@ import { LoadingService } from 'src/app/shared/controllers/loading/loading.servi
 import { ToastService } from 'src/app/shared/controllers/toastService/toast.service';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { DatabaseService } from 'src/app/shared/services/database/database.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-tasks',
@@ -18,7 +19,7 @@ export class TasksPage implements OnInit {
   public taskForm!: FormGroup;
 
   constructor(private readonly authSrv: AuthService, private readonly dbSrv: DatabaseService, private readonly loadingSrv: LoadingService,
-    private readonly nvctrl: NavController, private readonly toastSrv: ToastService) {
+    private readonly nvctrl: NavController, private readonly toastSrv: ToastService, private datePipe: DatePipe) {
     this.initForm()
 
    }
@@ -31,9 +32,13 @@ export class TasksPage implements OnInit {
     try {
       await this.loadingSrv.show();
       const { title, description } = this.taskForm.value;
+      const date = new Date();
       const taskData = {
         title: title,
-        description: description
+        description: description,
+        userId: await this.authSrv.getCurrentUid(),
+        date: this.datePipe.transform(date, "yyyy-MM-dd"),
+        done: false
       };
       await this.dbSrv.createTask(taskData);
       await this.loadingSrv.dismiss();
