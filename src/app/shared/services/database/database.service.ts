@@ -70,6 +70,14 @@ export class DatabaseService {
     );
   }
 
+  public getTaskById(taskId: string): Observable<Task | undefined> {
+    return this.fireStore
+      .collection<Task>(this.TasksTable)
+      .doc(taskId)
+      .valueChanges();  // Esto retornará un observable de los datos del documento
+  }
+  
+
   public async updateTask(taskId: string, task: Task): Promise<void> {
     const isAuth = await this.authsrv.isAuth();
     if (isAuth) {

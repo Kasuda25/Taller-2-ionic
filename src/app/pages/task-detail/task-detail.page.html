@@ -1,13 +1,18 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>task-detail</ion-title>
+    <ion-title>Task detail</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">task-detail</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content *ngIf="task$ | async as task">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{ task.title }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>{{ task.description }}</p>
+      <p>Date: {{ task.date }}</p>
+      <p>Status: {{ task.done ? 'Completada' : 'Pendiente' }}</p>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
