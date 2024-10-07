@@ -12,6 +12,7 @@ export class TasksPage implements OnInit {
   public taskForm!: FormGroup;
 
   constructor() {
+    this.initForm()
 
    }
 
@@ -20,7 +21,7 @@ export class TasksPage implements OnInit {
   }
 
   public doCreate(){
-    
+
   }
 
 

@@ -14,4 +14,8 @@ export class HomePage {
   public async profile(){
     this.navCtrl.navigateForward("profile");
   }
+
+  public async addTask(){
+    this.navCtrl.navigateForward("tasks");
+  }
 }

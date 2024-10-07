@@ -23,7 +23,8 @@ const routes: Routes = [
   },
   {
     path: 'tasks',
-    loadChildren: () => import('./pages/tasks/tasks.module').then( m => m.TasksPageModule)
+    loadChildren: () => import('./pages/tasks/tasks.module').then( m => m.TasksPageModule),
+    canActivate: [authGuard]
   },
   {
     path: '',
