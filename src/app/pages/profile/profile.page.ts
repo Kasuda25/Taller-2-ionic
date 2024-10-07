@@ -23,7 +23,7 @@ export class ProfilePage implements OnInit {
     await this.authSrv.logOut();
     await this.loadingSrv.dismiss();
     this.navCtrl.navigateForward("");
-    await this.toastSrv.presentToast("Se ha cerrado sesion", "success", "checkmark");
+    await this.toastSrv.presentToast("Session has been closed", "success", "checkmark");
   }
 
   public async update() {

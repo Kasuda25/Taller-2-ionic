@@ -13,31 +13,31 @@
     <ion-card-content>
       <p>{{ task.description }}</p>
       <p>Date: {{ task.date }}</p>
-      <p>Status: {{ task.done ? 'Completada' : 'Pendiente' }}</p>
+      <p>Status: {{ task.done ? 'Completed' : 'Pending' }}</p>
     </ion-card-content>
   </ion-card>
 
-  <ion-button expand="full" color="danger" (click)="deleteTask()">Eliminar Tarea</ion-button>
-  <ion-button expand="full" color="primary" (click)="editTask()">Editar</ion-button>
+  <ion-button expand="full" color="primary" (click)="editTask()">Edit</ion-button>
+  <ion-button expand="full" color="danger" (click)="deleteTask()">Delete</ion-button>
 
   <div class="modal-backdrop" *ngIf="isEditing">
     <div class="modal-content">
       <ion-card>
         <ion-card-header>
-          <ion-card-title>Editar Tarea</ion-card-title>
+          <ion-card-title>Edit Task</ion-card-title>
         </ion-card-header>
         <ion-card-content>
           <form [formGroup]="taskForm">
             <ion-item>
-              <ion-label position="stacked">Título</ion-label>
+              <ion-label position="stacked">Title</ion-label>
               <ion-input formControlName="title"></ion-input>
             </ion-item>
             <ion-item>
-              <ion-label position="stacked">Descripción</ion-label>
+              <ion-label position="stacked">Description</ion-label>
               <ion-textarea formControlName="description"></ion-textarea>
             </ion-item>
             <ion-item>
-              <ion-label position="stacked">Fecha</ion-label>
+              <ion-label position="stacked">Date</ion-label>
               <ion-datetime displayFormat="MM/DD/YYYY" formControlName="date"></ion-datetime>
             </ion-item>
             <ion-item>
@@ -45,8 +45,8 @@
               <ion-checkbox formControlName="done"></ion-checkbox>
             </ion-item>
             <div class="modal-buttons">
-              <ion-button (click)="cancelEdit()">Cancelar</ion-button>
-              <ion-button expand="full" (click)="saveTask()">Guardar Cambios</ion-button>
+              <ion-button (click)="cancelEdit()">Cancel</ion-button>
+              <ion-button expand="full" (click)="saveTask()">Save</ion-button>
             </div>
           </form>
         </ion-card-content>

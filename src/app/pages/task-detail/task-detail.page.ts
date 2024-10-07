@@ -23,7 +23,7 @@ export class TaskDetailPage implements OnInit {
     private readonly navCtrl: NavController,
     private readonly fb: FormBuilder,
     private readonly toastService: ToastService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -60,10 +60,10 @@ export class TaskDetailPage implements OnInit {
     if (this.id && this.taskForm.valid) {
       try {
         await this.databaseService.updateTask(this.id, this.taskForm.value);
-        this.showToast('Tarea actualizada con éxito', 'success', 'checkmark');
+        await this.toastService.presentToast('Task updated successfully.', 'success', 'checkmark');
         this.isEditing = false;
       } catch (error) {
-        this.showToast('Hubo un error al actualizar la tarea', 'danger', 'close');
+        await this.toastService.presentToast('There was an error updating the task.', 'danger', 'close');
       }
     }
   }
@@ -72,15 +72,11 @@ export class TaskDetailPage implements OnInit {
     if (this.id) {
       try {
         await this.databaseService.deleteTask(this.id);
-        this.showToast('Tarea eliminada con éxito', 'success', 'checkmark');
+        await this.toastService.presentToast('Task deleted successfully', 'success', 'checkmark');
         this.goBack();
       } catch (error) {
-        this.showToast('Hubo un error al eliminar la tarea', 'danger', 'close');
+        await this.toastService.presentToast('There was an error deleting the task.', 'danger', 'close');
       }
     }
-  }
-
-  private async showToast(message: string, color: 'success' | 'danger' | 'warning', icon: 'checkmark' | 'close' | 'warning') {
-    await this.toastService.presentToast(message, color, icon);
   }
 }

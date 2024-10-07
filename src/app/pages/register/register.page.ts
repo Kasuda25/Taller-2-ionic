@@ -57,7 +57,7 @@ export class RegisterPage implements OnInit {
       await this.toastSrv.presentToast("Registrado", "success", "checkmark");
     } catch (error) {
       await this.loadingSrv.dismiss();
-      await this.toastSrv.presentToast("Error al registrar usuario", "danger", "close");
+      await this.toastSrv.presentToast("Error creating user", "danger", "close");
       console.error(error);
     }
   }
@@ -83,7 +83,7 @@ export class RegisterPage implements OnInit {
       this.nvctrl.navigateForward("/profile");
     } catch (error) {
       await this.loadingSrv.dismiss();
-      await this.toastSrv.presentToast("Error al actualizar usuario", "danger", "close");
+      await this.toastSrv.presentToast("Error updating user", "danger", "close");
       console.error(error);
     }
   }

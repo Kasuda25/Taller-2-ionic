@@ -22,13 +22,13 @@ export class TasksPage implements OnInit {
     private readonly nvctrl: NavController, private readonly toastSrv: ToastService, private datePipe: DatePipe) {
     this.initForm()
 
-   }
+  }
 
   ngOnInit() {
 
   }
 
-  public async doCreate(){
+  public async doCreate() {
     try {
       await this.loadingSrv.show();
       const { title, description } = this.taskForm.value;
@@ -43,18 +43,18 @@ export class TasksPage implements OnInit {
       await this.dbSrv.createTask(taskData);
       await this.loadingSrv.dismiss();
       this.nvctrl.navigateForward("home");
-      await this.toastSrv.presentToast("Se ha guardado la tarea", "success", "checkmark");
+      await this.toastSrv.presentToast("Task created.", "success", "checkmark");
     } catch (error) {
       await this.loadingSrv.dismiss();
-      await this.toastSrv.presentToast("Error al guardar la tarea", "danger", "close");
+      await this.toastSrv.presentToast("There was an error creating the task.", "danger", "close");
       console.error(error);
     }
   }
 
 
-  private initForm(){
-    this.title =new FormControl('', [Validators.required]);
-    this.description = new FormControl('',[Validators.required]);
+  private initForm() {
+    this.title = new FormControl('', [Validators.required]);
+    this.description = new FormControl('', [Validators.required]);
     this.taskForm = new FormGroup({
       title: this.title,
       description: this.description

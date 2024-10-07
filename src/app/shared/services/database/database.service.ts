@@ -50,7 +50,7 @@ export class DatabaseService {
         .doc(id)
         .set({ ...task, id });
     } else {
-      return Promise.reject('Usuario no autenticado');
+      return Promise.reject('User not authenticated.');
     }
   }
 
@@ -64,7 +64,7 @@ export class DatabaseService {
             )
             .valueChanges();
         } else {
-          throw new Error('Usuario no autenticado');
+          throw new Error('User not authenticated.');
         }
       })
     );
@@ -86,7 +86,7 @@ export class DatabaseService {
         .doc(taskId)
         .update(task);
     } else {
-      return Promise.reject('Usuario no autenticado');
+      return Promise.reject('User not authenticated.');
     }
   }
 
@@ -95,7 +95,7 @@ export class DatabaseService {
     if (isAuth) {
       return this.fireStore.collection(this.TasksTable).doc(taskId).delete();
     } else {
-      return Promise.reject('Usuario no autenticado');
+      return Promise.reject('User not authenticated.');
     }
   }
 
