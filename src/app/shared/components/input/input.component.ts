@@ -12,6 +12,7 @@ export class InputComponent  implements OnInit {
   @Input() label: string = "";
   @Input() control = new FormControl();
   @Input() type: ButtonType = "text";
+  @Input() disable: Boolean = false;
 
   constructor() { }
 

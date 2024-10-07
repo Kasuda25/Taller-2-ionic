@@ -46,5 +46,11 @@ export class AuthService {
     });
   }
 
-  
+  public getCurrentUid(): Promise<string> {
+    return new Promise((resolve, reject) => {
+      this.fbAuth.currentUser.then((res) => {
+        resolve(res?.uid || "");
+      });
+    });
+  }
 }

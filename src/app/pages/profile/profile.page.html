@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <app-button (doClick)="update()" value="Update profile" color="success"></app-button>            
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <app-button (doClick)="logOut()" value="Log out" color="danger"></app-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

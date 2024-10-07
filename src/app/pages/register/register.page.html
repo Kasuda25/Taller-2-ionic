@@ -1,7 +1,7 @@
-<ion-content [fullscreen]="true">
+<ion-content>
   <ion-card>
     <ion-card-content>
-      <form [formGroup]="registerForm" (ngSubmit)="doRegister()">
+      <form [formGroup]="registerForm" (ngSubmit)="id ? doUpdate() : doRegister()">
         <ion-row>
           <ion-col>
             <app-avatar [control]="image"></app-avatar>
@@ -16,13 +16,13 @@
           <ion-col>
             <app-input [control]="lastName" label="last Name" type="text"></app-input>
           </ion-col>
-        </ion-row>
-        <ion-row>
+        </ion-row >
+        <ion-row *ngif="!id">
           <ion-col>
             <app-input [control]="email" label="Email" type="email"></app-input>
           </ion-col>
         </ion-row>
-        <ion-row>
+        <ion-row *ngIf="!id">
           <ion-col>
             <app-input [control]="password" label="Password" type="password"></app-input>
           </ion-col>

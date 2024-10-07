@@ -43,8 +43,8 @@ export class LoginPage implements OnInit {
   }
 
   private initForm() {
-    this.email = new FormControl([Validators.required, Validators.email]);
-    this.password = new FormControl([Validators.required]);
+    this.email = new FormControl('', [Validators.required, Validators.email]);
+    this.password = new FormControl('', [Validators.required]);
     this.loginForm = new FormGroup({
       email: this.email,
       password: this.password
