@@ -47,7 +47,6 @@ export class RegisterPage implements OnInit {
       const userData = {
         name: name,
         lastName: lastName,
-        email: email,
         age: age,
         phone: phone,
         image: image,
