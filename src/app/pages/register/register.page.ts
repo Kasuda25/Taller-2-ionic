@@ -55,6 +55,7 @@ export class RegisterPage implements OnInit {
       await this.dbSrv.addUser(uid, userData);
       await this.loadingSrv.dismiss();
       this.nvctrl.navigateForward("");
+      await this.toastSrv.presentToast("Registrado", "success", "checkmark");
     } catch (error) {
       await this.loadingSrv.dismiss();
       await this.toastSrv.presentToast("Error al registrar usuario", "danger", "close");

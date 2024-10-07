@@ -4,6 +4,7 @@ import { AuthService } from '../../shared/services/auth/auth.service';
 import { NavController } from '@ionic/angular';
 import { LoadingService } from 'src/app/shared/controllers/loading/loading.service';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
