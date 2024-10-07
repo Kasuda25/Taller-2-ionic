@@ -54,7 +54,7 @@ export class DatabaseService {
     }
   }
 
-  public getTask(userId: string): Observable<Task[]> {
+  public getuserTasks(userId: string): Observable<Task[]> {
     return from(this.authsrv.isAuth()).pipe(
       switchMap((isAuth) => {
         if (isAuth) {

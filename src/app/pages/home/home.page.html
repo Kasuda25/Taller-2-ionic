@@ -8,4 +8,20 @@
   <app-button (doClick)="addTask()" value="Add" color="success"></app-button>
   <br>
   <app-button (doClick)="profile()" value="Profile" color="success"></app-button>
+  <ion-list *ngIf="userTasks$ | async as userTasks; else noTasks">
+    <ion-item *ngFor="let task of userTasks">
+      <ion-label>
+        <h2>{{ task.title }}</h2>
+        <p>{{ task.description }}</p>
+        <p><small>Date: {{ task.date }}</small></p>
+      </ion-label>
+      <ion-checkbox slot="start" [checked]="task.done"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+
+  <ng-template #noTasks>
+    <ion-item>
+      <ion-label>Nothing here...</ion-label>
+    </ion-item>
+  </ng-template>
 </ion-content>
