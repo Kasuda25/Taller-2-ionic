@@ -5,8 +5,6 @@
 </ion-header>
 
 <ion-content>
-  <app-button (doClick)="addTask()" value="Add" color="success"></app-button>
-  <app-button (doClick)="profile()" value="Profile" color="success"></app-button>
   <ion-list *ngIf="userTasks$ | async as userTasks; else noTasks">
     <ion-item *ngFor="let task of userTasks" (click)="viewTask(task.id)">
       <ion-label>
@@ -22,4 +20,15 @@
       <ion-label>Nothing here...</ion-label>
     </ion-item>
   </ng-template>
+
+  <ion-footer>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <app-button (doClick)="addTask()" value="Add" color="success"></app-button>
+      </ion-buttons>
+      <ion-buttons slot="end">
+        <app-button (doClick)="profile()" value="Profile" color="tertiary"></app-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-footer>
 </ion-content>
