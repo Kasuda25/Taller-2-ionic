@@ -39,6 +39,10 @@ export class RegisterPage implements OnInit {
     });
   }
 
+  goBack() {
+    this.nvctrl.back();
+  }
+
   public async doRegister() {
     try {
       await this.loadingSrv.show();

@@ -17,6 +17,10 @@ export class ProfilePage implements OnInit {
   async ngOnInit() {
     this.id = await this.authSrv.getCurrentUid();
   }
+  
+  goBack() {
+    this.navCtrl.back();
+  }
 
   public async logOut() {
     await this.loadingSrv.show();
